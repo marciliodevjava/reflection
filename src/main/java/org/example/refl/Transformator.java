@@ -1,5 +1,6 @@
 package org.example.refl;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class Transformator {
@@ -9,6 +10,10 @@ public class Transformator {
         Class<?> target = source.forName(source.getClass() + "DTO");
 
         O targetClass = (O) target.getDeclaredConstructor(). newInstance();
+
+        Field[] sourceFields = source.getDeclaredFields();
+        Field[] targetFields = target.getDeclaredFields();
+
         return targetClass;
     }
 }
