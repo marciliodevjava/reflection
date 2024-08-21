@@ -27,4 +27,9 @@ public class PessoaDTO {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    @Override
+    public String toString() {
+        return "nome: %s\ncpf: %s\n".formatted(this.nome, this.cpf);
+    }
 }
