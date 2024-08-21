@@ -18,4 +18,12 @@ public class PessoaService {
         System.out.println(MESSAGE_FINAL);
         return pessoaDTO;
     }
+
+    public Pessoa pessoa() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        System.out.println(MESSAGE_CREATE);
+        PessoaDTO pessoaDTO = new PessoaDTO().list();
+        Pessoa pessoa = new Transformator().transform(pessoaDTO);
+        System.out.println(MESSAGE_FINAL);
+        return pessoa;
+    }
 }
