@@ -8,8 +8,7 @@ public class Transformator {
 
     public <I, O> O transform(I input) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class<?> source = input.getClass();
-        String targetClassName = source.getName() + "DTO";
-        Class<?> target = Class.forName(targetClassName);
+        Class<?> target = Class.forName(search(source));
 
         O targetClass = (O) target.getDeclaredConstructor().newInstance();
 
@@ -30,6 +29,11 @@ public class Transformator {
                 }));
 
         return targetClass;
+    }
+
+    private String search(Class<?> source) {
+        if(source.getName().contains("DTO")) return source.getName().replace("DTO","");
+        return source.getName().concat("DTO");
     }
 
     private Boolean validate(Field sourceField, Field targetField) {
