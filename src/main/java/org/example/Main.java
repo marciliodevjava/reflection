@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.domain.Pessoa;
 import org.example.domain.PessoaDTO;
 import org.example.service.PessoaService;
 
@@ -14,6 +15,8 @@ public class Main {
         System.out.println(INICIO);
         PessoaDTO dto = new PessoaService().list();
         System.out.println(dto);
+        Pessoa pessoa = new PessoaService().pessoa();
+        System.out.println(pessoa);
         System.out.println(FINALIZANDO);
     }
 }
