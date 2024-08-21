@@ -11,6 +11,9 @@ public class Pessoa {
         this.cpf = cpf;
     }
 
+    public Pessoa(){
+    }
+
     public Long getId() {
         return id;
     }
@@ -34,5 +37,10 @@ public class Pessoa {
 
     public String getCpf() {
         return cpf;
+    }
+
+    @Override
+    public String toString() {
+        return "nome: %s\ncpf: %s\n".formatted(this.nome, this.cpf);
     }
 }
