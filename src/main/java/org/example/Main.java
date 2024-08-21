@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.dto.PessoaDTO;
+import org.example.domain.PessoaDTO;
 import org.example.service.PessoaService;
 
 import java.lang.reflect.InvocationTargetException;
