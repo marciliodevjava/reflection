@@ -32,4 +32,8 @@ public class PessoaDTO {
     public String toString() {
         return "nome: %s\ncpf: %s\n".formatted(this.nome, this.cpf);
     }
+
+    public PessoaDTO list(){
+        return new PessoaDTO("Pedro","02396578948");
+    }
 }
