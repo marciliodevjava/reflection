@@ -8,7 +8,8 @@ public class Transformator {
 
     public <I, O> O transform(I input) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class<?> source = input.getClass();
-        Class<?> target = Class.forName(source + "DTO");
+        String targetClassName = source.getName() + "DTO";
+        Class<?> target = Class.forName(targetClassName);
 
         O targetClass = (O) target.getDeclaredConstructor().newInstance();
 
