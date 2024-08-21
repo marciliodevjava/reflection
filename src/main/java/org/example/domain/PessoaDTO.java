@@ -1,4 +1,4 @@
-package org.example.dto;
+package org.example.domain;
 
 public class PessoaDTO {
     private String nome;
@@ -7,6 +7,9 @@ public class PessoaDTO {
     public PessoaDTO(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
+    }
+
+    public PessoaDTO(){
     }
 
     public String getNome() {
