@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.opentest4j.AssertionFailedError;
+import org.opentest4j.MultipleFailuresError;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -55,6 +56,20 @@ public class TransformatorTest {
                 () -> assertInstanceOf(Pessoa.class, pessoa1),
                 () -> assertEquals(dto.getNome(), pessoa1.getNome()),
                 () -> assertEquals(dto.getCpf(), pessoa1.getCpf()));
+    }
+
+    @Test
+    @DisplayName("Teste de reflect de PessoaDTO para pessoa dando Erro no Assert exception MultipleFailuresError")
+    public void shouldTransformPessoaDTOException() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        Assertions.assertThrows(MultipleFailuresError.class, () -> {
+            Transformator transformator = new Transformator();
+            Pessoa pessoa1 = transformator.transform(dto);
+
+            Assertions.assertAll("EXECUTA TESTES",
+                    () -> assertInstanceOf(Pessoa.class, pessoa1),
+                    () -> assertEquals(dto.getNome(), pessoa1.getNome()),
+                    () -> assertEquals("", pessoa1.getCpf()));
+        });
     }
 
     @Test
