@@ -6,8 +6,12 @@ import org.example.refl.Transformator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import java.lang.reflect.InvocationTargetException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 public class TransformatorTest {
 
@@ -20,9 +24,9 @@ public class TransformatorTest {
         Transformator transformator = new Transformator();
         PessoaDTO pessoaDTO = transformator.transform(pessoa);
 
-        Assertions.assertInstanceOf(PessoaDTO.class, pessoaDTO);
-        Assertions.assertEquals(pessoa.getNome(), pessoaDTO.getNome());
-        Assertions.assertEquals(pessoa.getCpf(), pessoaDTO.getCpf());
+        assertInstanceOf(PessoaDTO.class, pessoaDTO);
+        assertEquals(pessoa.getNome(), pessoaDTO.getNome());
+        assertEquals(pessoa.getCpf(), pessoaDTO.getCpf());
     }
 
     @Test
@@ -31,8 +35,9 @@ public class TransformatorTest {
         Transformator transformator = new Transformator();
         Pessoa pessoa1 = transformator.transform(dto);
 
-        Assertions.assertInstanceOf(Pessoa.class, pessoa1);
-        Assertions.assertEquals(dto.getNome(), pessoa1.getNome());
-        Assertions.assertEquals(dto.getCpf(), pessoa1.getCpf());
+        Assertions.assertAll("EXECUTA TESTES",
+                () -> assertInstanceOf(Pessoa.class, pessoa1),
+                () -> assertEquals(dto.getNome(), pessoa1.getNome()),
+                () -> assertEquals(dto.getCpf(), pessoa1.getCpf()));
     }
 }
