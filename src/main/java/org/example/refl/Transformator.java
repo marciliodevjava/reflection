@@ -19,21 +19,22 @@ public class Transformator {
         Arrays.stream(sourceFields).forEach(sourceField ->
                 Arrays.stream(targetFields).forEach(targetField -> {
                     sourceField.setAccessible(true);
-                    if (validate(sourceField, targetField)){
+                    if (validate(sourceField, targetField)) {
                         targetField.setAccessible(true);
                         try {
                             targetField.set(targetClass, sourceField.get(input));
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
                         }
-                    };
+                    }
+                    ;
                 }));
 
         return targetClass;
     }
 
     private String search(Class<?> source) {
-        if(source.getName().contains("DTO")) return source.getName().replace("DTO","");
+        if (source.getName().contains("DTO")) return source.getName().replace("DTO", "");
         return source.getName().concat("DTO");
     }
 
