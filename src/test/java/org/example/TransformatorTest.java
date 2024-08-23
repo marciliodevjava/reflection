@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import org.opentest4j.AssertionFailedError;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -29,6 +30,19 @@ public class TransformatorTest {
         assertInstanceOf(PessoaDTO.class, pessoaDTO);
         assertEquals(pessoa.getNome(), pessoaDTO.getNome());
         assertEquals(pessoa.getCpf(), pessoaDTO.getCpf());
+    }
+
+    @Test
+    @DisplayName("Teste de reflect de Pessoa para pessoaDTO dando Erro no Assert")
+    public void shouldTransformPessoaException() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        Assertions.assertThrows(AssertionFailedError.class, () -> {
+            Transformator transformator = new Transformator();
+            PessoaDTO pessoaDTO = transformator.transform(pessoa);
+
+            assertInstanceOf(PessoaDTO.class, pessoaDTO);
+            assertEquals("", pessoaDTO.getNome());
+            assertEquals("", pessoaDTO.getCpf());
+        });
     }
 
     @Test
